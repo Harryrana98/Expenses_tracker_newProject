@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KhataBook</title>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+
+        <div>
+            <input type="number" name="" id="total" placeholder="Total Amount">
+
+            <button id="add">Add Money</button><br>
+
+        </div>
+
+        <input type="text" name="" id="name" placeholder="Name of Expense">
+        <input type="number" name="" id="amount" placeholder="Amount of expense">
+
+        <button id="expense">Expense</button>
+
+        <div id="totalamount">Total: <span></span>
+            <div id="spent">Spent: <span></span>
+                <div id="remain">Remainning: <span></span>
+
+
+                </div>
+                <!-- <span id="exname">
+
+        </span>
+
+        <span id="examount"></span> -->
+
+
+
+            </div>
+
+</body>
+
+<script>
+
+    let total = document.querySelector("#total")
+    let exname = document.querySelector("#exname")
+    let examount = document.querySelector("#examount")
+    let show = document.querySelector("#showDisplay")
+    let spent = document.querySelector("#spent span")
+    let remain = document.querySelector("#remain span")
+
+    let name = document.querySelector("#name")
+    let amount = document.querySelector("#amount")
+    let expense = document.querySelector("#expense")
+    let add = document.querySelector("#add")
+    let totalamount = document.querySelector("#totalamount span")
+    let totalamt = document.querySelector("#totalamount")
+    // let p=document.querySelector("p")
+
+    add.addEventListener("click", function () {
+        totalamount.innerHTML = total.value
+    })
+
+    expense.addEventListener("click", function () {
+        let p1 = document.createElement('p')
+        let p2 = document.createElement('p')
+
+
+        if (Number(total.value) >= Number(amount.value)) {
+
+
+            spent.innerHTML = Number(amount.value) + Number(spent.innerHTML)
+
+
+            remain.innerHTML = Number(total.value) - Number(spent.innerHTML)
+            // total.value=Number(total.value)- Number(spent.innerHTML)
+
+
+
+
+            // exname.innerHTML=name.value
+            // examount.innerHTML=amount.value
+
+            totalamount.append(p1)
+            totalamount.append(p2)
+            p1.innerHTML = "Expense Name: " + name.value
+            p2.innerHTML = "Expense Price: " + amount.value
+            name.value = ""
+            amount.value = ""
+            // total.value=""
+
+           
+
+        }
+
+        
+        
+        
+        else {
+            alert("Insufficient balance")
+        }
+        
+        if (Number(total.value) < Number(spent.innerHTML)) {
+                alert("You don't have enough money to make this expense")
+            }
+        
+    })
+
+
+
+
+</script>
+
+</html>
