@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Expense</title>
+
+    <style>
+        .total {
+            border: 1px solid black;
+            /* text-align: center; */
+            width: 169px;
+            display: inline-block;
+            padding: 5px;
+            margin-top: 5px;
+        }
+
+        input {
+            padding: 5px;
+            margin-top: 5px;
+            display: flex;
+        }
+
+        .container{
+            background-color: antiquewhite;
+            height: 100vh;
+        }
+
+       
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <form action="">
+            <input type="text" name="" id="" placeholder="Enter Total Budget">
+        </form>
+        <br>
+        <div class="Budget">
+
+            <div class="total">Total:<span id="total"> </span></div>
+            <br>
+            <div class="total">Spent:<span id="spent"></span> </div>
+            <br>
+            <div class="total">Remainning:<span id="Remainning"></span> </div>
+            <br>
+        </div>
+
+
+        <!-- <button onclick="total()">click</button> -->
+
+        <form action=""></form>
+        <input type="text" name="" id="name" placeholder="Details">
+        </form>
+        <br>
+        <form action="">
+            <input type="text" name="" id="sp" placeholder="Amount">
+
+        </form>
+        <br>
+        <button onclick="addexpense()">Add Expense</button>
+
+
+        <br>
+
+
+        <table id="store">
+            <tr>
+                <th>S.No.</th>
+                <th>Info</th>
+                <th>Amount</th>
+
+
+
+            </tr>
+
+        </table>
+    </div>
+
+</body>
+
+<script>
+    let inter = document.querySelector("input")
+    let expense = document.querySelector("#total");
+
+
+    let exname = document.querySelector("#name")
+    let spent = document.querySelector("#spent");
+    let remain = document.querySelector("#Remainning");
+    let spend = document.querySelector("#sp")
+
+    let table = document.querySelector("#store")
+
+    let x = 0;
+
+    function addexpense() {
+
+        expense.innerHTML = inter.value
+
+        spent.innerHTML = spend.value
+
+        if(inter.value>spend.value){
+            remain.innerHTML = inter.value - spend.value
+        }
+        else{
+            remain.innerHTML = "Insufficient Balance"
+        }
+
+      
+
+
+        let row = table.insertRow(0)
+        let cell1 = row.insertCell(0)
+        let cell2 = row.insertCell(1)
+        let cell3 = row.insertCell(2)
+        table.append(row)
+        cell1.innerHTML = ++x
+        cell2.innerHTML = exname.value
+        cell3.innerHTML = spend.value
+
+        // let tar=document.createElement("tr")
+        // let td1 = document.createElement("td")
+        // tar.append(td1)
+
+        // let td2=document.createDocumentFragment("td")
+        // td2.innerHTML=spend.value
+        // tar.append(td2)
+
+    }
+
+</script>
+
+</html>

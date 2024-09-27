@@ -9,6 +9,9 @@
 
 <body>
 
+
+
+
     <div id="wrapper">
 
 
@@ -25,87 +28,116 @@
         <button id="expense">Expense</button>
 
         <div id="totalamount">Total: <span></span>
-            <div id="spent">Spent: <span></span>
-                <div id="remain">Remainning: <span></span>
+        </div>
+
+        <div id="spent">Spent: <span></span>
+        </div>
+
+        <div id="remain">Remainning: <span></span>
+        </div>
+
+         <table id="store">
+            <tr>
+                <th>S.No.</th>
+                <th>Expense Name</th>
+                <th>Expense Price</th>
 
 
-                </div>
-                <!-- <span id="exname">
 
-        </span>
+            </tr>
 
-        <span id="examount"></span> -->
+        </table>
 
 
 
-            </div>
+
+    </div>
 
 </body>
 
 <script>
 
-    let total = document.querySelector("#total")
-    let exname = document.querySelector("#exname")
-    let examount = document.querySelector("#examount")
-    let show = document.querySelector("#showDisplay")
-    let spent = document.querySelector("#spent span")
-    let remain = document.querySelector("#remain span")
 
-    let name = document.querySelector("#name")
-    let amount = document.querySelector("#amount")
-    let expense = document.querySelector("#expense")
-    let add = document.querySelector("#add")
-    let totalamount = document.querySelector("#totalamount span")
-    let totalamt = document.querySelector("#totalamount")
-    // let p=document.querySelector("p")
+    let totalInput = document.querySelector("#total")
+    let spentSpan = document.querySelector("#spent span")
+    let remainSpan = document.querySelector("#remain span")
+    
+    let nameInput = document.querySelector("#name")
+    let amountInput = document.querySelector("#amount")
+    let expenseButton = document.querySelector("#expense")
+    let addButton = document.querySelector("#add")
+    let totalAmountSpan = document.querySelector("#totalamount span")
+    let table=document.querySelector("#store")
+    let totalAmount = 0
+    let totalSpent = 0
+    let x=0;
 
     add.addEventListener("click", function () {
-        totalamount.innerHTML = total.value
+        totalAmount = Number(totalInput.value)+Number(totalAmount);
+        totalAmountSpan.innerHTML = totalAmount;
+        remainSpan.innerHTML = totalAmount - totalSpent;
+
+
     })
 
     expense.addEventListener("click", function () {
-        let p1 = document.createElement('p')
-        let p2 = document.createElement('p')
+       
+        let expenseAmount = Number(amountInput.value)
 
-
-        if (Number(total.value) >= Number(amount.value)) {
-
-
-            spent.innerHTML = Number(amount.value) + Number(spent.innerHTML)
-
-
-            remain.innerHTML = Number(total.value) - Number(spent.innerHTML)
-            // total.value=Number(total.value)- Number(spent.innerHTML)
-
-
-
-
-            // exname.innerHTML=name.value
-            // examount.innerHTML=amount.value
-
-            totalamount.append(p1)
-            totalamount.append(p2)
-            p1.innerHTML = "Expense Name: " + name.value
-            p2.innerHTML = "Expense Price: " + amount.value
-            name.value = ""
-            amount.value = ""
-            // total.value=""
-
-           
-
+        if (!nameInput.value || expenseAmount <= 0) {
+            alert("Please enter a valid expense name and amount.");
+            return;
         }
 
-        
-        
-        
-        else {
-            alert("Insufficient balance")
+
+        if (totalAmount < totalSpent + expenseAmount) {
+            alert("You don't have enough money to make this expense.");
+            return;
         }
+
+
+        totalSpent = totalSpent + expenseAmount;
+
+        spentSpan.innerHTML = totalSpent;
+        remainSpan.innerHTML = totalAmount - totalSpent;
+
+        // totalAmount=remainSpan.value
+
+        // let p1 = document.createElement('p')
+        // let p2 = document.createElement('p')
+
+
+        // totalamount.append(p1)
+        // totalamount.append(p2)
+        // p1.innerHTML = "Expense Name: " + nameInput.value
+        // p2.innerHTML = "Expense Price: " + amountInput.value
         
-        if (Number(total.value) < Number(spent.innerHTML)) {
-                alert("You don't have enough money to make this expense")
-            }
         
+        
+        
+        
+        
+        
+        let row = table.insertRow(0)
+        let cell1 = row.insertCell(0)
+        let cell2 = row.insertCell(1)
+        let cell3 = row.insertCell(2)
+        table.append(row)
+        cell1.innerHTML = ++x
+        cell2.innerHTML =  nameInput.value
+        cell3.innerHTML = amountInput.value
+        
+        nameInput.value = ""
+        amountInput.value = ""
+        totalInput.value=""
+
+
+
+
+
+
+
+
     })
 
 
